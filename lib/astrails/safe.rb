@@ -18,6 +18,7 @@ require 'astrails/safe/backup'
 
 require 'astrails/safe/source'
 require 'astrails/safe/mysqldump'
+require 'astrails/safe/innobackupex'
 require 'astrails/safe/pgdump'
 require 'astrails/safe/archive'
 require 'astrails/safe/svndump'
@@ -42,6 +43,7 @@ module Astrails
 
 
       [[Mysqldump, [:mysqldump, :databases]],
+       [Innobackupex,    [:innobackupex,    :databases]],
        [Pgdump,    [:pgdump,    :databases]],
        [Archive,   [:tar,       :archives]],
        [Svndump,   [:svndump,   :repos]]
