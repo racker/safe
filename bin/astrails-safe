@@ -5,6 +5,11 @@ require 'rubygems'
 # require 'ruby-debug'
 $:.unshift File.expand_path("../../lib", __FILE__)
 
+# Fix because bundler is broken in Ubuntu 10.04 LTS
+if RUBY_VERSION == "1.8.7"
+  ENV['GEM_HOME'] = File.expand_path("../../vendor/bundle/ruby/1.8", __FILE__)
+end
+
 require 'astrails/safe'
 include Astrails::Safe
 
