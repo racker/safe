@@ -1,0 +1,15 @@
+#!/bin/sh
+
+set -e
+
+DIR=".."
+[ $# -eq 1 ] && DIR=$1
+
+VERSION=$(git rev-parse HEAD)
+
+tar --transform "flags=rSh;s,^,safe/," \
+  -cvzf $DIR/safe-$VERSION-$BUILD_NUMBER.tar.gz \
+  --exclude=.git* .
+
+SHASUM=`shasum -a 256 $DIR/safe-$VERSION-$BUILD_NUMBER.tar.gz |awk '{print $1}'`
+echo $SHASUM > $DIR/safe-$VERSION-$BUILD_NUMBER.sha256
